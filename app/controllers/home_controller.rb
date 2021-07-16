@@ -6,12 +6,13 @@ class HomeController < ApplicationController
     if params[:ticker] == ""
         @nothing_msg = "Please Enter a Symbol"
     elsif params[:ticker]
-      # check the stock symbol and get info:
-      @stock = StockQuote::Stock.quote(params[:ticker])
-      if !@stock
-          @invalid_symbol_msg = "That stock doesn't exist. Please enter a valid symbol."
-      end
-
+      begin
+        # check the stock symbol and get info:
+        @stock = StockQuote::Stock.quote(params[:ticker])
+      rescue Exception => e
+        @invalid_symbol_msg = "That stock doesn't exist. Please enter a valid symbol."
+        return nil
+      end #begin
     end # if params[:ticker] == null
   end #def
 
