@@ -14,14 +14,20 @@
     <br/>Hi mom!
       <%= render 'home/navbar' %>
 
-      <!-- Having container here indents everything just a bit -->
+    <!-- Having container here indents everything just a bit -->
       <div class="container">
+        <!-- not using these two lines anymore. Using flash message in app->views->home->flash.html.erb
           <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert %></p>
-
+        -->
+          <%= render 'home/flash' %>
           <br/>
           <%= yield %>
       </div>
+
       <%= render 'home/footer' %>
+      <!-- The following is a script to include Popper and JavaScript plugins, so msg will dismiss. -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   </body>
 </html>

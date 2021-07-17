@@ -1,0 +1,13 @@
+<% flash.each do |name, msg| %>
+<!-- msg does NOT dismiss. Figure out later. -->
+  <div class="alert alert-warning alert-dismissable fade show" role="alert" >
+
+      <button type = "button" class = "btn-close" data-bs-dismiss="alert" aria-label="Close" style="float: right;">
+<!--    Using the aria-label="Close" so don't need this anymore:
+    <small><sup>x</sup></small> -->
+      </button>
+
+      <!-- says content will be whatever devise is using for text -->
+      <%= content_tag(:div, msg, data:{ dimiss:"alert"}) %>
+  </div>
+<% end %>
