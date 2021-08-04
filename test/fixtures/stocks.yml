@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  ticker: FB
+  price: 9.99
+  date: 2021-08-02 17:54:12
+
+two:
+  user_id: 1
+  ticker: MSFT
+  price: 12.00
+  date: 2021-08-02 17:54:12

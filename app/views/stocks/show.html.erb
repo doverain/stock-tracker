@@ -1,0 +1,23 @@
+
+<p>
+  <strong>User:</strong>
+  <%= @stock.user_id %>
+</p>
+
+<p>
+  <strong>Ticker:</strong>
+  <%= @stock.ticker %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @stock.price %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @stock.date %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>
