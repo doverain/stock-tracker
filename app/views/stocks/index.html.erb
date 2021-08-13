@@ -1,30 +1,58 @@
-<h1>Stocks</h1>
-
-<table>
-  <thead>
+<table class="table table-hover table-bordered">
+  <thead class="table-info">
     <tr>
-      <th>User</th>
-      <th>Ticker</th>
+      <th>Company Name</th>
+      <th>Symbol</th>
       <th>Price</th>
-      <th>Date</th>
-      <th colspan="3"></th>
+      <th>P/E Ratio</th>
+      <th>Market Cap</th>
+      <th>Latest Date</th>
+      <th colspan="3"></th> <!-- 3 links: show, edit, delete -->
     </tr>
   </thead>
 
   <tbody>
+    <% @api = StockQuote::Stock.new(api_key: 
+       'pk_6730195fe96d4172b0001facd3fc8dbc')%>
+
     <% @stocks.each do |stock| %>
       <% if stock.user_id == current_user.id %>
+
+        <!-- use stock symbol to get info: -->
+        <!-- If bad symbol, it generates RuntimeError. -->
+        <% begin %>
+          <% @stk = StockQuote::Stock.quote(stock.ticker) %>
+        <%rescue Exception => e %>  <!-- U aren't supposed to do this, but oh well. -->
+          <% @stk = nil %>
+        <% end %>
+        <% if !@stk %> <!-- Bad stock symbol -->
+          <tr>
+            <td><%= link_to "Invalid Symbol", stock %></td>
+            <td><%= stock.ticker %></td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td><center><%= link_to 'Show', stock %></center></td>
+            <td><center><%= link_to 'Edit', edit_stock_path(stock) %></center></td>
+            <td><center><%= link_to 'Delete', stock, method: :delete, data: { confirm: 'Are you sure?' } %></center></td>
+          </tr>
+          <% else %>
         <tr>
-          <td><%= stock.user_id %></td>
-          <td><%= stock.ticker %></td>
-          <td><%= stock.price %></td>
-          <td><%= stock.date %></td>
-          <td><%= link_to 'Show', stock %></td>
-          <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
-          <td><%= link_to 'Destroy', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <% end %> <!-- end if -->
-    <% end %> <!-- end do -->
+        <td><%= link_to @stk.company_name, stock %></td>
+        <td><%= @stk.symbol %></td>
+        <td>$ <%= number_with_precision(@stk.latest_price, :precision => 2, :delimiter => ',') %></td>
+        <td>$ <%= number_with_precision(@stk.pe_ratio, :precision => 2, :delimiter => ',') %></td>
+        <td>$ <%= number_with_precision(@stk.market_cap, :precision => 0, :delimiter => ',') %></td>
+        <td><%= @stk.latest_time %></td>
+        <!--  <%= @stk.inspect %> -->
+        <td><center><%= link_to 'Show', stock %></center></td>
+        <td><center><%= link_to 'Edit', edit_stock_path(stock) %></center></td>
+        <td><center><%= link_to 'Delete', stock, method: :delete, data: { confirm: 'Are you sure?' } %></center></td>
+      </tr>
+      <% end %> <!-- end if bad symbol and else -->
+      <% end %> <!-- end if user ok -->
+  <% end %> <!-- end do -->
   </tbody>
 </table>
 

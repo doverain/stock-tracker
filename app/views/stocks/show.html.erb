@@ -1,23 +1,30 @@
 
-<p>
-  <strong>User:</strong>
-  <%= @stock.user_id %>
-</p>
+  <!-- use stock symbol to get info: -->
+  <!-- If bad symbol, it generates RuntimeError. -->
+  <% begin %>
+    <% @stk = StockQuote::Stock.quote(@stock.ticker) %>
+  <%rescue Exception => e %>  <!-- U aren't supposed to do this, but oh well. -->
+      <% @stk = nil %>
+  <% end %>
 
-<p>
-  <strong>Ticker:</strong>
-  <%= @stock.ticker %>
-</p>
+  <% if !@stk %> <!-- Bad stock symbol -->
+    
+      Invalid Stock Ticker Symbol:<br/>
+      <%= @stock.ticker %><br/>
+    <br/>
 
-<p>
-  <strong>Price:</strong>
-  <%= @stock.price %>
-</p>
+  <% else %>
 
-<p>
-  <strong>Date:</strong>
-  <%= @stock.date %>
-</p>
+    <h4><%= @stk.company_name%></h4>
+    <strong>Stock Ticker Symbol:</strong> <%= @stk.symbol %><br/>
+    <strong>Date:</strong> <%= @stk.latest_time %><br/>
+    <strong>Current Price:</strong> $ <%= number_with_precision(@stk.latest_price, :precision => 2, :delimiter => ',') %><br/>
+    <strong>Previous Close:</strong> $ <%= number_with_precision(@stk.previous_close, :precision => 2, :delimiter => ',') %><br/>
+    <strong>P/E Ratio:</strong> <%= number_with_precision(@stk.pe_ratio, :precision => 2, :delimiter => ',') %><br/>
+    <strong>Market Cap:</strong> $ <%= number_with_precision(@stk.market_cap, :precision => 0, :delimiter => ',') %>
+
+  <% end %> <!-- end if bad symbol -->
+
 
 <%= link_to 'Edit', edit_stock_path(@stock) %> |
 <%= link_to 'Back', stocks_path %>
