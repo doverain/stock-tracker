@@ -1,6 +1,7 @@
 <h1>Stock Tracker</h1>
-<!-- works in conjunction with app->controllers->home_controller.rb 
-	     and views/layouts/application.html.erb -->
+<!-- works in conjunction with 
+		 app->controllers->home_controller.rb 
+	     views->layouts->application.html.erb -->
 <%= form_tag root_path, :method => 'POST' do %>
 	<%= text_field_tag 'ticker', nil, placeholder: "   Enter Ticker Symbol", size: 50 %>
 	<%= submit_tag 'Lookup' %>
@@ -8,7 +9,7 @@
 
 <!-- We checked for the stock symbol in home_controller.rb -->
 <% if @stock %>
-    <%= @stock.company_name %><br/>
+    <%= @stock.company_name %><br/><br/>
     Latest price = $ <%= @stock.latest_price %><br/>
 <% elsif @invalid_symbol_msg %>
 	<%= @invalid_symbol_msg %>
