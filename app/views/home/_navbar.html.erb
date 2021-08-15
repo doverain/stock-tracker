@@ -3,7 +3,7 @@
   flex-fill - what type of flex object
   bd-highlight - some color thing
   p-2 - says padding to $spacer * .5
-  container-fluid - spans whole window
+  container-fluid - spans whole screen
 
 <div class="d-flex bd-highlight">
   <div class="p-2 flex-fill bd-highlight">Flex item with a lot of content</div>
@@ -22,12 +22,13 @@
 
 -->
 <!-- old
+    navbar-expand-lg - creates hamburger on large screens
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 -->
 
-<nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-dark">
+<nav class="navbar navbar-fixed-top navbar-dark bg-dark">
 
-  <div class="container-fluid">
+  <div class="container-fluid"> 
 
     <%= link_to "StockTracker", root_path, class:"navbar-brand"%>
     <!-- old stupid hamburger thing
@@ -38,8 +39,15 @@
   <div class="d-flex">
     <!-- old
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+  -- old
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      me-auto - margin is automatic
+      mb-2 - setting margin bottom so it adds space when 
+             hamburger created
+      mb-lg-0 - margin bottom set to zero for large devices
   -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mb-lg-0">
 
 <!-- Look in the $ rails routes  output to find paths -->
         <li class="nav-item">
