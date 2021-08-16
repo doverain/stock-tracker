@@ -1,11 +1,8 @@
-<!-- Bootstrap's fill code:
+<!-- Bootstrap's fill code that didn't work (not flex object?):
   d-flex - keyword indicating it's a flex object
   flex-fill - what type of flex object
   bd-highlight - some color thing
   p-2 - says padding to $spacer * .5
-  bg-dark - background = dark
-  navbar-dark - adds white text to links
-  container-fluid - spans whole screen
 
 <div class="d-flex bd-highlight">
   <div class="p-2 flex-fill bd-highlight">Flex item with a lot of content</div>
@@ -13,97 +10,53 @@
   <div class="p-2 flex-fill bd-highlight">Flex item</div>
 </div>
 -->
-<!-- Didn't work, didn't fill. No Buttons or Links shown.
-<nav class="navbar d-flex navbar-dark bg-dark">
 
-     Didn't work, didn't fill. Bar just white.
-     <nav class="navbar d-flex bd-highlight">
-
-    Didn't work. Buttons wrapped, content gone, minimize didn't fill.
-<div class="navbar navbar-expand-lg navbar-dark bg-dark">
-
--->
 <!-- old
-    navbar-expand-lg - creates hamburger on large screens
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 -->
-
-<nav class="navbar navbar-dark bg-dark navbar-fixed-top">
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <div class="d-flex">
-      <div class="flex-fill">
-        <!-- navbar-brand - emphasize name -->
-        <%= link_to "StockTracker", root_path, class:"navbar-brand" %>
-      </div>
-    <!-- old stupid hamburger thing
+    <%= link_to "StockTracker", root_path, class:"navbar-brand"%>
+    <!-- hamburger button stuff: -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-  <div class="d-flex">  not working?
-  --> 
-    <!-- old
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-  -- old
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      me-auto - margin is automatic
-      mb-2 - setting margin bottom so it adds space when 
-             hamburger created
-      mb-lg-0 - margin bottom set to zero for large devices
-  -->
-    <ul class="navbar-nav mb-1 mb-lg-0">
-
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <!-- Look in the $ rails routes  output to find paths -->
-      <div class="flex-fill">
         <li class="nav-item">
           <%= link_to "About", home_about_path, 
             class:"nav-link"%>
         </li>
-      </div>
-
-      <% if user_signed_in? %>
-        <div class="flex-fill">
+        <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "Stocks List", stocks_path, 
               class:"nav-link"%>
           </li>
-        </div>
-
-        <div class="flex-fill">
           <li class="nav-item">
             <%= link_to "Add Stock", new_stock_path,
               class:"nav-link"%>
           </li>
-        </div>
 
-        <div class="flex-fill">
           <li class="nav-item">
             <%= link_to "Edit Profile", edit_user_registration_path, 
               class:"nav-link"%>
           </li>
-        </div>
 
-        <div class="flex-fill">
           <li class="nav-item">
             <%= link_to "Log Out", destroy_user_session_path, method: :delete,
               class:"nav-link"%>
           </li>
-        </div>
-
         <% else %>
-        <div class="flex-fill">
           <li class="nav-item">
             <%= link_to "Sign Up", new_user_registration_path, class:"nav-link"%>
           </li>
-        </div>
-        <div class="flex-fill">
+
           <li class="nav-item">
             <%= link_to "Log In", new_user_session_path, 
               class:"nav-link"%>
           </li>
-        </div>
         <% end %>
         
       </ul>
@@ -112,8 +65,7 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
-
-    </div> <-- collapse navbar-collapse -->
-  </div> <!-- class='d-flex' -->
- </div> <!-- container-fluid" -->
+-->
+    </div>
+  </div>
 </nav>
