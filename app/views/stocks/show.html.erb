@@ -4,7 +4,10 @@
   <% begin %>
     <% @stk = StockQuote::Stock.quote(@stock.ticker) %>
     <%= @stk %> <br/>
+        <!-- Sample output: #<StockQuote::Stock:0x0000558c3cbb3140> -->
   <%rescue Exception => e %>  <!-- U aren't supposed to do this, but oh well. -->
+      <br/><br/><br/>
+      <%= @stock.ticker %>
       <%= @stk %> <br/>
       <% @stk = nil %>
   <% end %>
