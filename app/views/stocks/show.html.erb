@@ -5,6 +5,7 @@
     <% @stk = StockQuote::Stock.quote(@stock.ticker) %>
     <%= @stk %> <br/>
   <%rescue Exception => e %>  <!-- U aren't supposed to do this, but oh well. -->
+      <%= @stk %> <br/>
       <% @stk = nil %>
   <% end %>
 
@@ -26,6 +27,6 @@
 
   <% end %> <!-- end if bad symbol -->
 
-
+<br/>
 <%= link_to 'Edit', edit_stock_path(@stock) %> |
 <%= link_to 'Back', stocks_path %>
