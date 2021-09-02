@@ -3,6 +3,7 @@
   <!-- If bad symbol, it generates RuntimeError. -->
   <% begin %>
     <% @stk = StockQuote::Stock.quote(@stock.ticker) %>
+    <%= @stk %> <br/>
   <%rescue Exception => e %>  <!-- U aren't supposed to do this, but oh well. -->
       <% @stk = nil %>
   <% end %>
